@@ -3,6 +3,8 @@ const stripe = require("stripe")("sk_test_b78m2sseXjEpo45JxKcaMVA3");
 
 const app = express();
 
+const PORT = process.env.PORT || 3000
+
 const options = {
   root: __dirname + '/public/',
   dotfiles: 'deny',
@@ -42,4 +44,4 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke! See error message in console');
 });
 
-app.listen(3000, () => console.log('Example app loading on port 3000'));
+app.listen(PORT, () => console.log(`App loading on port ${PORT}`));
