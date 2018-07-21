@@ -4,7 +4,7 @@ const stripe = require("stripe")("sk_test_b78m2sseXjEpo45JxKcaMVA3");
 const app = express();
 
 const options = {
-  root: __dirname + '/static/',
+  root: __dirname + '/public/',
   dotfiles: 'deny',
   headers: {
       'x-timestamp': Date.now(),
@@ -13,7 +13,7 @@ const options = {
 };
 
 app.use(require("body-parser").urlencoded({extended: false}));
-app.use(express.static('static'));
+app.use(express.static('public'));
 
 app.get('/', (req, res) => res.send('Hello world'));
 
