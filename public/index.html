@@ -1,14 +1,29 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="./css/styles.css">
-  </head>
-  <body>
-    <h1>Panda Shrine</h1>
-    <div class="nav">
-      <a href="/donations">Donate</a>
-    </div>
-    <div class="shrine">
-      <img src="./images/pandas.jpg" width="400px" alt="All Hail Panda">
-    </div>
-  </body>
+
+<head>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+  <h1>Panda Shrine</h1>
+  <div class="nav">
+    <a href="/donations">Donate</a>
+  </div>
+  <div class="shrine">
+    <img src="./images/pandas.jpg" width="400px" alt="All Hail Panda">
+  </div>
+  <div>
+    <!-- Form to submit a candle. Candle is written to db. All candles should load from db initially. -->
+    <form action="/candle" method="POST">
+      <label for="from">From</label>
+      <input type="text" id="from" name="from">
+      <label for="message">Message</label>
+      <input type="text" id="message" name="message">
+      <label for="donation">Donation</label>
+      <input type="checkbox" id="donation" name="donation" value="donated">
+      <button type="submit">Add a Candle</button>
+    </form>
+  </div>
+</body>
+
 </html>
