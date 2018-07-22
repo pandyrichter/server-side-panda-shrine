@@ -23,7 +23,20 @@ const options = {
 app.use(require("body-parser").urlencoded({ extended: false }))
 app.use(express.static("public"))
 
-// app.get("/", (req, res) => res.send("Hello world"));
+app.get("/candles", (req, res) => {
+  console.log('Querying database...');
+
+  const query = Candle.find();
+
+  query.exec((err, candles) => {
+    if (err) console.log(err);
+    res.send(`
+    <a href="/">Back to home</a>
+    <h1>Here is a list of candles!</h1>
+    <p>${candles}</p>
+    `);
+  });
+});
 
 app.get("/donations", (req, res) => res.sendFile("donations.html", options))
 
@@ -41,7 +54,8 @@ app.post("/candle", (req, res) => {
     test.lightCandle()
   })
 
-  res.sendFile("candle.html", options)
+  // res.sendFile("candle.html", options)
+  res.redirect('/candles');
 })
 
 app.post("/thankyou", (req, res) => {
