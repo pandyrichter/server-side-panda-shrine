@@ -9,7 +9,10 @@
   },
   "author": "davestein",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
+  },
   "dependencies": {
     "assert": "^1.4.1",
     "body-parser": "^1.18.3",
@@ -17,6 +20,8 @@
     "express": "^4.16.3",
     "mongodb": "^3.1.1",
     "mongoose": "^5.2.4",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
     "stripe": "^6.3.0"
   },
   "engines": {

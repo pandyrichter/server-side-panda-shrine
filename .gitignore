@@ -75,3 +75,6 @@ typings/
 .serverless
 
 .DS_Store
+
+# src files for front-end bundled by Parcel
+/dist

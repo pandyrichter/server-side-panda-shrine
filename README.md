@@ -28,8 +28,13 @@ Here's the progression so far:
 # Dependencies
 
 The goal is to keep this as simple as possible. Currently, the only true dependencies include:
+- Node
 - Express
 - Stripe (and body-parser to support reading request data from Stripe, [per their instructions](https://stripe.com/docs/checkout/express))
+
+Optional suggestions
+- MongoDB
+- Nodemon
 
 
 # Installation

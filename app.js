@@ -3,11 +3,11 @@ require("dotenv").config()
 const express = require("express")
 const stripe = require("stripe")(process.env.STRIPE_TEST_PK)
 
+const app = express()
+
 // Start Database
 const db = require("./db")
 const Candle = require("./models/Candle")
-
-const app = express()
 
 const PORT = process.env.PORT || 3000
 
@@ -20,8 +20,27 @@ const options = {
   }
 }
 
+// Replace following line in order to handle React files
+// app.use(express.static("public"))
+app.use('/', express.static(__dirname + '/dist'));
 app.use(require("body-parser").urlencoded({ extended: false }))
-app.use(express.static("public"))
+
+app.post("/candle", (req, res) => {
+  console.log(req.body)
+
+  const candledonor = new Candle({
+    from: req.body.from,
+    message: req.body.message,
+    donation: req.body.donation
+  })
+
+  candledonor.save((err, test) => {
+    if (err) return console.error(err)
+    test.lightCandle()
+  })
+
+  res.redirect('/candles');
+});
 
 app.get("/candles", (req, res) => {
   console.log('Querying database...');
@@ -39,24 +58,6 @@ app.get("/candles", (req, res) => {
 });
 
 app.get("/donations", (req, res) => res.sendFile("donations.html", options))
-
-app.post("/candle", (req, res) => {
-  console.log(req.body)
-
-  const candledonor = new Candle({
-    from: req.body.from,
-    message: req.body.message,
-    donation: req.body.donation
-  })
-
-  candledonor.save((err, test) => {
-    if (err) return console.error(err)
-    test.lightCandle()
-  })
-
-  // res.sendFile("candle.html", options)
-  res.redirect('/candles');
-})
 
 app.post("/thankyou", (req, res) => {
   const token = req.body.stripeToken
