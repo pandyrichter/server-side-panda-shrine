@@ -1,14 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import pandaImg from './images/pandas.jpg'
+
+import Candle from './components/Candle';
+
+import pandaURL from './images/pandas.jpg';
+import styles from './styles.css';
 
 const App = () => {
   return (
     <div>
-      <h1>PANDA SHRINE</h1>
-      <h2>I'm the React App now!</h2>
-      <h3>So what if I make a change now...</h3>
-      <a href="/donations">Donations</a>
+      <div className={styles.wrapper}>
+        <h1 className={styles.brand}>Panda Shrine</h1>
+        <img src={pandaURL} height="200" />
+        <hr />
+        <h2>Candles:</h2>
+        <Candle />
+        <hr />
+        <div className={styles.button}>Create a Candle</div>
+        <a className={styles.button} href="/donations">Donations</a>
+      </div>
     </div>
   )
 };
